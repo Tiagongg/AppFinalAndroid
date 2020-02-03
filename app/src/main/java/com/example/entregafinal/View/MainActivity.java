@@ -1,10 +1,12 @@
 package com.example.entregafinal.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -15,6 +17,7 @@ import android.widget.Toast;
 
 
 import com.example.entregafinal.R;
+import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
@@ -34,15 +37,42 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
+    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+//        navigationView = findViewById(R.id.navigationView);
+//        ListenerDelNavigationView listenerDelNavigationView = new ListenerDelNavigationView();
+//        navigationView.setNavigationItemSelectedListener(listenerDelNavigationView);
+
         textInputUsername = findViewById(R.id.text_input_username);
         textInputPassword = findViewById(R.id.text_input_password);
     }
+
+//    private class ListenerDelNavigationView implements NavigationView.OnNavigationItemSelectedListener{
+//        @Override
+//        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//            selectedMenuItem(menuItem);
+//            return true;
+//        }
+//    }
+//
+//    private void selectedMenuItem(MenuItem item){
+//        if (item.getItemId() == R.id.login){
+//            Intent intent = new Intent(this,MainActivity.class);
+//            startActivity(intent);
+//
+//        } else if (item.getItemId() == R.id.about) {
+//            Intent intent = new Intent(this,AboutUs.class);
+//            startActivity(intent);
+//        }
+//
+//
+//    }
+
 
 
     private boolean validateUsername() {
@@ -84,4 +114,5 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-}
+
+    }

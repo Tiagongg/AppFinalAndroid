@@ -5,26 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.entregafinal.R;
 import com.google.android.material.navigation.NavigationView;
 
-public class LoggedActivity extends AppCompatActivity {
+public class AboutUs extends AppCompatActivity {
 
     NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_logged);
+        setContentView(R.layout.activity_about_us);
 
 
         navigationView = findViewById(R.id.navigationView);
-        ListenerDelNavigationView listenerDelNavigationView = new ListenerDelNavigationView();
+        AboutUs.ListenerDelNavigationView listenerDelNavigationView = new AboutUs.ListenerDelNavigationView();
         navigationView.setNavigationItemSelectedListener(listenerDelNavigationView);
-
     }
 
 
@@ -38,7 +36,7 @@ public class LoggedActivity extends AppCompatActivity {
 
     private void selectedMenuItem(MenuItem item){
         if (item.getItemId() == R.id.login){
-            Intent intent = new Intent(this, LoggedActivity.class);
+            Intent intent = new Intent(this,LoggedActivity.class);
             startActivity(intent);
 
         } else if (item.getItemId() == R.id.about) {
@@ -48,7 +46,5 @@ public class LoggedActivity extends AppCompatActivity {
 
 
     }
-
-
 
 }
