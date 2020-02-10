@@ -44,34 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        navigationView = findViewById(R.id.navigationView);
-//        ListenerDelNavigationView listenerDelNavigationView = new ListenerDelNavigationView();
-//        navigationView.setNavigationItemSelectedListener(listenerDelNavigationView);
-
         textInputUsername = findViewById(R.id.text_input_username);
         textInputPassword = findViewById(R.id.text_input_password);
     }
-
-//    private class ListenerDelNavigationView implements NavigationView.OnNavigationItemSelectedListener{
-//        @Override
-//        public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-//            selectedMenuItem(menuItem);
-//            return true;
-//        }
-//    }
-//
-//    private void selectedMenuItem(MenuItem item){
-//        if (item.getItemId() == R.id.login){
-//            Intent intent = new Intent(this,MainActivity.class);
-//            startActivity(intent);
-//
-//        } else if (item.getItemId() == R.id.about) {
-//            Intent intent = new Intent(this,AboutUs.class);
-//            startActivity(intent);
-//        }
-//
-//
-//    }
 
 
 
