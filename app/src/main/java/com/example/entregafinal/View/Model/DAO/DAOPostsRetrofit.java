@@ -24,9 +24,13 @@ public class DAOPostsRetrofit {
 
 
 
+
     public DAOPostsRetrofit() {
 
-        baseURL = "https://jsonplaceholder.typicode.com/";
+        String apiKey = "614e1adf9c1a4939a8b31b02876a2851";
+
+        baseURL = "https://newsapi.org/v2/";
+
 
         retrofit = new Retrofit.Builder()
                 .baseUrl(baseURL)

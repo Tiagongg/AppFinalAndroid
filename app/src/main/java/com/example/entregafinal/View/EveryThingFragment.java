@@ -14,12 +14,10 @@ import android.view.ViewGroup;
 
 import com.example.entregafinal.R;
 import com.example.entregafinal.View.Adapter.NewsAdapter;
-import com.example.entregafinal.View.Adapter.PostsAdapter;
 import com.example.entregafinal.View.Controller.NewsController;
-import com.example.entregafinal.View.Controller.PostsController;
 import com.example.entregafinal.View.Model.POJO.News;
+import com.example.entregafinal.View.Model.POJO.NewsEverything;
 import com.example.entregafinal.View.Model.POJO.NoticiaTopResponse;
-import com.example.entregafinal.View.Model.POJO.Posts;
 import com.example.entregafinal.View.Util.ResultListener;
 
 import java.util.ArrayList;
@@ -28,7 +26,8 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class EveryThingFragment extends Fragment {
+
 
     NewsController newsController;
 
@@ -39,12 +38,11 @@ public class MainFragment extends Fragment {
     List<News> listadeNews = new ArrayList<>();
 
 
-
     Context context;
 
 
-    public MainFragment() {
-
+    public EveryThingFragment() {
+        // Required empty public constructor
     }
 
 
@@ -52,42 +50,37 @@ public class MainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
+        View view = inflater.inflate(R.layout.fragment_every_thing, container, false);
 
 
         recyclerViewNews = view.findViewById(R.id.reciclerViewNews);
 
         newsController = new NewsController();
 
-
-
-
-
-
-
-        ResultListener<NoticiaTopResponse> EscuchadorActivityNews = new ResultListener<NoticiaTopResponse>() {
+        ResultListener<NewsEverything> EscuchadorActivityNews = new ResultListener<NewsEverything>() {
             @Override
-            public void finish(NoticiaTopResponse resultado) {
+            public void finish(NewsEverything resultado) {
 
 
-                for (News news : resultado.getListaNews()) {
+                for (News news : resultado.getListaNewsEverything()) {
 
                     listadeNews.add(news);
 
 
-
                 }
-                    newsAdapter = new NewsAdapter(context,listadeNews);
-                    recyclerViewNews.setAdapter(newsAdapter);
 
-                    RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
-                    recyclerViewNews.setLayoutManager(layoutManager);
+                newsAdapter = new NewsAdapter(context,listadeNews);
+                recyclerViewNews.setAdapter(newsAdapter);
+
+                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
+                recyclerViewNews.setLayoutManager(layoutManager);
 
             }
         };
 
 
-        newsController.getnews(EscuchadorActivityNews);
+        newsController.getEverythingNews(EscuchadorActivityNews);
+
 
 
         return view;
