@@ -4,12 +4,15 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.entregafinal.R;
+import com.example.entregafinal.View.MainFragment;
 import com.example.entregafinal.View.Model.POJO.News;
 
 import java.util.List;
@@ -61,6 +64,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
         TextView textViewDescription;
         TextView textViewTitle;
         TextView textViewContent;
+        ImageView newsImageView;
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +74,7 @@ public class NewsAdapter extends RecyclerView.Adapter {
             textViewDescription = itemView.findViewById(R.id.textDescription);
             textViewTitle = itemView.findViewById(R.id.titleText);
             textViewContent = itemView.findViewById(R.id.textViewcontent);
+            newsImageView = itemView.findViewById(R.id.newsImageView);
 
 
         }
@@ -89,7 +94,10 @@ public class NewsAdapter extends RecyclerView.Adapter {
             } else{
                 textViewContent.setText(news.getContent().toString());
             }
+            String urlImage = news.getUrlToImage();
 
+
+            Glide.with(context).load(urlImage).into(newsImageView);
         }
 
 
