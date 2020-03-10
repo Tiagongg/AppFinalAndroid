@@ -4,6 +4,7 @@ package com.example.entregafinal.View;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,17 +12,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.example.entregafinal.R;
 import com.example.entregafinal.View.Adapter.NewsAdapter;
-import com.example.entregafinal.View.Adapter.PostsAdapter;
 import com.example.entregafinal.View.Controller.NewsController;
-import com.example.entregafinal.View.Controller.PostsController;
 import com.example.entregafinal.View.Model.POJO.News;
 import com.example.entregafinal.View.Model.POJO.NoticiaTopResponse;
-import com.example.entregafinal.View.Model.POJO.Posts;
 import com.example.entregafinal.View.Util.ResultListener;
 
 import java.util.ArrayList;
@@ -30,7 +26,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class MainFragment extends Fragment {
+public class MainFragment extends Fragment implements NewsAdapter.EscuchadorFragment {
 
     NewsController newsController;
 
@@ -40,6 +36,8 @@ public class MainFragment extends Fragment {
 
     List<News> listadeNews = new ArrayList<>();
 
+    EscuchadorActivity escuchadorActivity;
+
 
 
     Context context;
@@ -48,6 +46,14 @@ public class MainFragment extends Fragment {
     public MainFragment() {
 
     }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        escuchadorActivity = (EscuchadorActivity) context;
+}
+
+
 
 
     @Override
@@ -61,15 +67,6 @@ public class MainFragment extends Fragment {
 
         newsController = new NewsController();
 
-
-
-
-
-
-
-
-
-
         ResultListener<NoticiaTopResponse> EscuchadorActivityNews = new ResultListener<NoticiaTopResponse>() {
             @Override
             public void finish(NoticiaTopResponse resultado) {
@@ -82,7 +79,7 @@ public class MainFragment extends Fragment {
 
 
                 }
-                    newsAdapter = new NewsAdapter(context,listadeNews);
+                    newsAdapter = new NewsAdapter(MainFragment.this::clickOnImagenNews,getContext(),listadeNews);
                     recyclerViewNews.setAdapter(newsAdapter);
 
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
@@ -96,6 +93,15 @@ public class MainFragment extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void clickOnImagenNews(News news) {
+        escuchadorActivity.clickOnNews(news);
+    }
+
+    public interface EscuchadorActivity{
+        void clickOnNews(News news);
     }
 
 }

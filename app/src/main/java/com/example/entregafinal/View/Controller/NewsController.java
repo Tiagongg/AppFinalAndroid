@@ -1,14 +1,9 @@
 package com.example.entregafinal.View.Controller;
 
 import com.example.entregafinal.View.Model.DAO.DAONewsRetrofit;
-import com.example.entregafinal.View.Model.DAO.DAOPostsRetrofit;
-import com.example.entregafinal.View.Model.POJO.News;
 import com.example.entregafinal.View.Model.POJO.NewsEverything;
 import com.example.entregafinal.View.Model.POJO.NoticiaTopResponse;
-import com.example.entregafinal.View.Model.POJO.Posts;
 import com.example.entregafinal.View.Util.ResultListener;
-
-import java.util.List;
 
 public class NewsController {
 

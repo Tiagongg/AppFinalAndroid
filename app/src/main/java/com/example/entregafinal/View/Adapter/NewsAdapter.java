@@ -1,6 +1,7 @@
 package com.example.entregafinal.View.Adapter;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -19,11 +21,14 @@ import java.util.List;
 
 public class NewsAdapter extends RecyclerView.Adapter {
 
+    EscuchadorFragment escuchadorFragment;
+
     Context context;
 
     List<News> listaNews;
 
-    public NewsAdapter(Context context, List<News> listaNews) {
+    public NewsAdapter(EscuchadorFragment escuchadorFragment, Context context, List<News> listaNews) {
+        this.escuchadorFragment = escuchadorFragment;
         this.context = context;
         this.listaNews = listaNews;
     }
@@ -65,6 +70,8 @@ public class NewsAdapter extends RecyclerView.Adapter {
         TextView textViewTitle;
         TextView textViewContent;
         ImageView newsImageView;
+        TextView textViewDate;
+        ConstraintLayout layout1;
 
         public ViewHolderItems(@NonNull View itemView) {
             super(itemView);
@@ -74,7 +81,18 @@ public class NewsAdapter extends RecyclerView.Adapter {
             textViewDescription = itemView.findViewById(R.id.textDescription);
             textViewTitle = itemView.findViewById(R.id.titleText);
             textViewContent = itemView.findViewById(R.id.textViewcontent);
+            textViewDate = itemView.findViewById(R.id.textViewDate);
+            layout1 = itemView.findViewById(R.id.layout1);
+
+
             newsImageView = itemView.findViewById(R.id.newsImageView);
+
+            newsImageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    escuchadorFragment.clickOnImagenNews(listaNews.get(getAdapterPosition()));
+                }
+            });
 
 
         }
@@ -86,21 +104,31 @@ public class NewsAdapter extends RecyclerView.Adapter {
                 textViewAuthor.setText(news.getAuthor().toString());
             }
 
-            textViewDescription.setText(news.getDescription().toString());
+//            textViewDescription.setText(news.getDescription().toString());
+
             textViewTitle.setText(news.getTitle().toString());
 
-            if (news.getContent() == null){
+            if (news.getPublishedAt() == null){
 
             } else{
-                textViewContent.setText(news.getContent().toString());
+                textViewDate.setText(news.getPublishedAt());;
             }
+
+            textViewDate.setText(news.getPublishedAt());
+
             String urlImage = news.getUrlToImage();
 
+             Glide.with(context).load(urlImage).into(newsImageView);
 
-            Glide.with(context).load(urlImage).into(newsImageView);
+
         }
 
 
+    }
+
+
+    public interface EscuchadorFragment{
+        void clickOnImagenNews(News news);
     }
 
 

@@ -25,7 +25,7 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
-public class LoggedActivity extends AppCompatActivity {
+public class LoggedActivity extends AppCompatActivity implements MainFragment.EscuchadorActivity, EveryThingFragment.EscuchadorActivity {
 
 //    NavigationView navigationView;
     FragmentManager fm;
@@ -36,35 +36,6 @@ public class LoggedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logged);
-//
-//        newsController = new NewsController();
-//
-//
-//        ResultListener<NoticiaTopResponse> EscuchadorActivityNews = new ResultListener<NoticiaTopResponse>() {
-//            @Override
-//            public void finish(NoticiaTopResponse resultado) {
-//
-//            }
-//
-//        };
-//
-//        newsController.getnews(EscuchadorActivityNews);
-//
-//        DAONewsRetrofit daoNewsRetrofit = new DAONewsRetrofit();
-//        daoNewsRetrofit.getTopNews(EscuchadorActivityNews);
-
-
-//        fm = getSupportFragmentManager();
-//
-//        EveryThingFragment everyThingFragment = new EveryThingFragment();
-//
-//
-//
-//
-//
-//        FragmentTransaction fragmentTransaction = fm.beginTransaction();
-//        fragmentTransaction.replace(R.id.fragmentContainer,everyThingFragment);
-//        fragmentTransaction.commit();
 
 
 
@@ -74,6 +45,12 @@ public class LoggedActivity extends AppCompatActivity {
 
 
         fm = getSupportFragmentManager();
+
+        MainFragment mainFragment = new MainFragment();
+
+        FragmentTransaction fragmentTransaction = fm.beginTransaction();
+        fragmentTransaction.replace(R.id.fragmentContainer,mainFragment);
+        fragmentTransaction.commit();
 
     }
 
@@ -107,4 +84,29 @@ public class LoggedActivity extends AppCompatActivity {
         }
     };
 
+    @Override
+    public void clickOnNews(News news) {
+
+        String title = news.getTitle();
+        String author = news.getAuthor();
+        String description = news.getDescription();
+        String content = news.getContent();
+        String imagen = news.getUrlToImage();
+
+
+        Intent intent = new Intent(this,OneNewsActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", title);
+        bundle.putString("author", author);
+        bundle.putString("description",description);
+        bundle.putString("content", content);
+        bundle.putString("imagen",imagen);
+
+        intent.putExtras(bundle);
+
+        startActivity(intent);
+
+
+
+    }
 }

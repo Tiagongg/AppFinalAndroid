@@ -4,6 +4,7 @@ package com.example.entregafinal.View;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -26,7 +27,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class EveryThingFragment extends Fragment {
+public class EveryThingFragment extends Fragment implements NewsAdapter.EscuchadorFragment {
 
 
     NewsController newsController;
@@ -37,6 +38,8 @@ public class EveryThingFragment extends Fragment {
 
     List<News> listadeNews = new ArrayList<>();
 
+    EscuchadorActivity escuchadorActivity;
+
 
     Context context;
 
@@ -45,6 +48,11 @@ public class EveryThingFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        escuchadorActivity = (EscuchadorActivity) context;
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,7 +77,7 @@ public class EveryThingFragment extends Fragment {
 
                 }
 
-                newsAdapter = new NewsAdapter(context,listadeNews);
+                newsAdapter = new NewsAdapter(EveryThingFragment.this::clickOnImagenNews,getContext(),listadeNews);
                 recyclerViewNews.setAdapter(newsAdapter);
 
                 RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
@@ -86,4 +94,12 @@ public class EveryThingFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void clickOnImagenNews(News news) {
+        escuchadorActivity.clickOnNews(news);
+    }
+
+    public interface EscuchadorActivity{
+        void clickOnNews(News news);
+    }
 }

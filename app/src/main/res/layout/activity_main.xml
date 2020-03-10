@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".View.MainActivity"
     android:orientation="vertical"
-    android:background="@color/colorPrimaryDark"
+    android:background="@drawable/dayli"
     android:gravity="center"
     android:padding="20dp">
 
@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="40dp"
         android:layout_marginBottom="70dp"
-        app:cardBackgroundColor="@color/colorPrimary">
+        app:cardBackgroundColor="@color/btnColor">
 
         <TextView
             android:layout_width="match_parent"
@@ -31,7 +31,7 @@
             android:paddingTop="20dp"
             android:typeface="sans"
             android:textStyle="bold"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             />
 
     </androidx.cardview.widget.CardView>
@@ -44,7 +44,7 @@
         app:cardCornerRadius="40dp"
         android:layout_marginBottom="30dp"
         android:layout_marginHorizontal="20dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/btnColor"
         >
 
 
@@ -66,9 +66,10 @@
             android:layout_height="wrap_content"
             android:hint="Username"
             android:inputType="text"
+            android:text="Test"
             android:textSize="15dp"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/black"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,7 +82,7 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="40dp"
         android:layout_marginHorizontal="20dp"
-        app:cardBackgroundColor="@color/colorPrimary"
+        app:cardBackgroundColor="@color/btnColor"
 
         >
 
@@ -99,9 +100,10 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword"
+            android:text="Test1"
             android:textSize="15dp"
             android:gravity="center_horizontal"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/black"/>
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -116,7 +118,7 @@
         android:onClick="confirmInput"
         android:text="LOGIN"
         android:textSize="30dp"
-        android:background="@drawable/roundshapebtn"
+        android:background="@drawable/button_color"
         android:paddingHorizontal="30dp"
         android:layout_marginTop="40dp"
         android:textColor="@android:color/white"/>

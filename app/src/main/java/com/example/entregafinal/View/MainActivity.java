@@ -17,7 +17,6 @@ import android.widget.Toast;
 
 
 import com.example.entregafinal.R;
-import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Pattern;
@@ -37,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
 
     private TextInputLayout textInputUsername;
     private TextInputLayout textInputPassword;
-    NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
