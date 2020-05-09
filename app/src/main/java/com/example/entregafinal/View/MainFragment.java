@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import com.example.entregafinal.View.Adapter.NewsAdapter;
 import com.example.entregafinal.View.Controller.NewsController;
 import com.example.entregafinal.View.Model.POJO.News;
 import com.example.entregafinal.View.Model.POJO.NoticiaTopResponse;
+import com.example.entregafinal.View.Services.ServicePost;
 import com.example.entregafinal.View.Util.ResultListener;
 
 import java.util.ArrayList;
@@ -37,6 +39,8 @@ public class MainFragment extends Fragment implements NewsAdapter.EscuchadorFrag
     List<News> listadeNews = new ArrayList<>();
 
     EscuchadorActivity escuchadorActivity;
+
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
 
@@ -61,6 +65,9 @@ public class MainFragment extends Fragment implements NewsAdapter.EscuchadorFrag
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
+
+
+        swipeRefreshLayout =  view.findViewById(R.id.swipeRefreshLayout);
 
 
         recyclerViewNews = view.findViewById(R.id.reciclerViewNews);
@@ -91,9 +98,19 @@ public class MainFragment extends Fragment implements NewsAdapter.EscuchadorFrag
 
         newsController.getnews(EscuchadorActivityNews);
 
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                newsController.getnews(EscuchadorActivityNews);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
 
         return view;
     }
+
+
 
     @Override
     public void clickOnImagenNews(News news) {

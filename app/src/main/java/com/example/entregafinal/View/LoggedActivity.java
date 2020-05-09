@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class LoggedActivity extends AppCompatActivity implements MainFragment.Es
     FragmentManager fm;
     NewsController newsController;
     BottomNavigationView bottomNavigationView;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +44,7 @@ public class LoggedActivity extends AppCompatActivity implements MainFragment.Es
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setOnNavigationItemSelectedListener(navListener);
+        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
 
         fm = getSupportFragmentManager();
@@ -51,6 +54,8 @@ public class LoggedActivity extends AppCompatActivity implements MainFragment.Es
         FragmentTransaction fragmentTransaction = fm.beginTransaction();
         fragmentTransaction.replace(R.id.fragmentContainer,mainFragment);
         fragmentTransaction.commit();
+
+
 
     }
 
