@@ -18,6 +18,7 @@ public interface ServicePost {
 
     @GET("everything")
     Call<NewsEverything> getEverythingNews(@Query("apiKey") String apiKey,
+                                           @Query("language") String language,
                                            @Query("q")String word);
 
 }

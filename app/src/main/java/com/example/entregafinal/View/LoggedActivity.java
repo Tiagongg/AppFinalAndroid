@@ -64,13 +64,6 @@ public class LoggedActivity extends AppCompatActivity implements MainFragment.Es
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             Fragment selectedFragment = null;
 
-//            if (selectedFragment != null) {
-//                Toast.makeText(LoggedActivity.this, "AAAAAAAAAAAAAAA", Toast.LENGTH_SHORT).show();
-////                selectedFragment = new MainFragment();
-//            } else if (item.getItemId() == R.id.country){
-//                selectedFragment = new MainFragment();
-//            }
-
             switch (item.getItemId()){
                 case R.id.country:
                     selectedFragment = new MainFragment();

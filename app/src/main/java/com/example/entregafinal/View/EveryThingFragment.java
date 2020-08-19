@@ -74,7 +74,6 @@ public class EveryThingFragment extends Fragment implements NewsAdapter.Escuchad
 
                     listadeNews.add(news);
 
-
                 }
 
                 newsAdapter = new NewsAdapter(EveryThingFragment.this::clickOnImagenNews,getContext(),listadeNews);
@@ -85,7 +84,6 @@ public class EveryThingFragment extends Fragment implements NewsAdapter.Escuchad
 
             }
         };
-
 
         newsController.getEverythingNews(EscuchadorActivityNews);
 

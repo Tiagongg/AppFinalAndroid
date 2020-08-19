@@ -54,7 +54,7 @@ public class DAONewsRetrofit {
     }
 
     public void getEverythingNews(final ResultListener<NewsEverything> escuchadorDelNewsController) {
-        Call<NewsEverything> newsCallback = servicePost.getEverythingNews(apiKey,"bitcoin");
+        Call<NewsEverything> newsCallback = servicePost.getEverythingNews(apiKey,"es","gaming");
         newsCallback.enqueue(new Callback<NewsEverything>() {
             @Override
             public void onResponse(Call<NewsEverything> call, Response<NewsEverything> response) {
